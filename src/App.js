@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import ReactJson from 'react-json-view'
 import './App.css';
 
 function App() {
@@ -7,7 +8,8 @@ function App() {
   const [callStg, setCallStg] = useState('')
   const [client, setClient] = useState('')
 
-  const [testFrame, setTestFrame] = useState('')
+  // const [prodIframe, setProdIframe] = useState('')
+  // const [stgIframe, setstgIframe] = useState('')
 
   const [dc, setDc] = useState('')
   const [requestKey, setRequestKey] = useState('')
@@ -18,7 +20,7 @@ function App() {
       const resProd = await fetch(
         `https://rosetta.prod.us-east-1.nexus.bazaarvoice.com/package/1/client/${client}`
       )
-      const dataProd = await resProd.text()
+      const dataProd = await resProd.json()
       setCallProd(dataProd)
     }
     
@@ -26,7 +28,7 @@ function App() {
       const resStg = await fetch(
         `https://rosetta-stg.prod.us-east-1.nexus.bazaarvoice.com/package/1/client/${client}`
         )
-      const dataStg = await resStg.text()
+      const dataStg = await resStg.json()
       setCallStg(dataStg)
     }
       
@@ -34,10 +36,11 @@ function App() {
       await getResponseProd()      
       await getResponseStg()
     }
-
+    
     getAll()
-
-    setTestFrame(`https://rosetta.prod.us-east-1.nexus.bazaarvoice.com/package/1/client/${client}`)
+    
+    // setProdIframe(`https://rosetta.prod.us-east-1.nexus.bazaarvoice.com/package/1/client/${client}`)
+    // setstgIframe(`https://rosetta-stg.prod.us-east-1.nexus.bazaarvoice.com/package/1/client/${client}`)
   }
 
   const callHandler2 = async (e) => {
@@ -46,7 +49,7 @@ function App() {
       const resProd = await fetch(
         `https://rosetta.prod.us-east-1.nexus.bazaarvoice.com/scan/2/site/${dc}/prr?key=${requestKey}`
       )
-      const dataProd = await resProd.text()
+      const dataProd = await resProd.json()
       setCallProd(dataProd)
     }
     
@@ -54,7 +57,7 @@ function App() {
       const resStg = await fetch(
         `https://rosetta-stg.prod.us-east-1.nexus.bazaarvoice.com/scan/2/site/${dc}/prr?key=${requestKey}`
         )
-      const dataStg = await resStg.text()
+      const dataStg = await resStg.json()
       setCallStg(dataStg)
     }
       
@@ -64,6 +67,9 @@ function App() {
     }
 
     getAll()
+
+    // setProdIframe(`https://rosetta.prod.us-east-1.nexus.bazaarvoice.com/scan/2/site/${dc}/prr?key=${requestKey}`)
+    // setstgIframe(`https://rosetta-stg.prod.us-east-1.nexus.bazaarvoice.com/scan/2/site/${dc}/prr?key=${requestKey}`)
   }
 
   return (
@@ -102,12 +108,14 @@ function App() {
       <div className='container'>
         <div className='prod'>
           <h3>PROD</h3>
-          {/* {callProd} */}
-          <iframe src={testFrame} title='prod'></iframe>
+          <ReactJson displayDataTypes={false} displayObjectSize={false} enableClipboard={false} displayArrayKey={false} quotesOnKeys={false} groupArraysAfterLength={false} collapseStringsAfterLength={40} src={callProd} />
+          {/* <div><pre>{JSON.stringify(callProd, undefined, 2)}</pre></div> */}
+          {/* <iframe id='myIframe' src={prodIframe} title='prod'></iframe> */}
         </div>
         <div className='stg'>
           <h3>STG</h3>
-          {callStg}
+          <ReactJson displayDataTypes={false} displayObjectSize={false} enableClipboard={false} displayArrayKey={false} quotesOnKeys={false} groupArraysAfterLength={false} collapseStringsAfterLength={40} src={callStg} />
+          {/* <iframe src={stgIframe} title='stg'></iframe> */}
         </div>
       </div>
     </div>

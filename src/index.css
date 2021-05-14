@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  padding-top: 20px;
+  padding: 20px 10px 0 10px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -20,7 +20,12 @@ body {
   width: 49%;
 }
 
-iframe {
+/* iframe {
   width: 100%;
   height: 100%;
+  height: 90%;
+} */
+
+.react-json-view {
+  text-align: left;
 }
