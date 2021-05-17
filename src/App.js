@@ -74,46 +74,50 @@ function App() {
 
   return (
     <div className="App">
-      <form>
-        <input
-          placeholder='Client'
-          value={client}
-          onChange={(event) => setClient(event.target.value)}
-        />
-        <button
-          type='submit'
-          onClick={callHandler}
-        >
-          CALL
-        </button>
-      </form>
-      <form>
-        <input
-          placeholder='Display Code'
-          value={dc}
-          onChange={(event) => setDc(event.target.value)}
-        />
-        <input
-          placeholder='key'
-          value={requestKey}
-          onChange={(event) => setRequestKey(event.target.value)}
-        />
-        <button
-          type='submit'
-          onClick={callHandler2}
-        >
-          CALL
-        </button>
-      </form>
+        <nav>
+          <form>
+            <input
+              placeholder='Client'
+              value={client}
+              onChange={(event) => setClient(event.target.value)}
+            />
+            <button
+              type='submit'
+              onClick={callHandler}
+            >
+              CALL
+            </button>
+          </form>
+          <form>
+            <input
+              placeholder='Display Code'
+              value={dc}
+              onChange={(event) => setDc(event.target.value)}
+            />
+            <input
+              placeholder='key'
+              value={requestKey}
+              onChange={(event) => setRequestKey(event.target.value)}
+            />
+            <button
+              type='submit'
+              onClick={callHandler2}
+            >
+              CALL
+            </button>
+          </form>
+          <div className='column-names'>
+            <h3>PROD</h3>
+            <h3>STG</h3>
+          </div>
+        </nav>
       <div className='container'>
         <div className='prod'>
-          <h3>PROD</h3>
           <ReactJson displayDataTypes={false} displayObjectSize={false} enableClipboard={false} displayArrayKey={false} quotesOnKeys={false} groupArraysAfterLength={false} collapseStringsAfterLength={40} src={callProd} />
           {/* <div><pre>{JSON.stringify(callProd, undefined, 2)}</pre></div> */}
           {/* <iframe id='myIframe' src={prodIframe} title='prod'></iframe> */}
         </div>
         <div className='stg'>
-          <h3>STG</h3>
           <ReactJson displayDataTypes={false} displayObjectSize={false} enableClipboard={false} displayArrayKey={false} quotesOnKeys={false} groupArraysAfterLength={false} collapseStringsAfterLength={40} src={callStg} />
           {/* <iframe src={stgIframe} title='stg'></iframe> */}
         </div>
