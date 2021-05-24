@@ -2,6 +2,14 @@ import React, { useState } from 'react'
 import ReactJson from 'react-json-view'
 import './App.css';
 
+// OPTIONS TO DISPLAY JSON:
+// 1. JSON.stringify() pretty-printing that is implemented natively
+//  PROBLEM: Can't yet seem to make it work as expected in react environment :(
+// 2. Display as text in iframe and let json viewer browser extention do the job
+//  PROBLEM: Would require everyone to use the extention that works with this solution, also managing iframes through css/js is a pain (to make iframe's height === to it's content's height)
+// 3. Use 'react-json-view' component
+//  PROBLEM: Works and looks very well, but larger JSONs seem to slow browsers down.
+
 function App() {
 
   const [callProd, setCallProd] = useState('')
@@ -113,12 +121,28 @@ function App() {
         </nav>
       <div className='container'>
         <div className='prod'>
-          <ReactJson displayDataTypes={false} displayObjectSize={false} enableClipboard={false} displayArrayKey={false} quotesOnKeys={false} groupArraysAfterLength={false} collapseStringsAfterLength={40} src={callProd} />
+          <ReactJson
+            displayDataTypes={false} 
+            displayObjectSize={false} 
+            enableClipboard={false} 
+            displayArrayKey={false} 
+            quotesOnKeys={false} 
+            groupArraysAfterLength={false} 
+            collapseStringsAfterLength={40} 
+            src={callProd} />
           {/* <div><pre>{JSON.stringify(callProd, undefined, 2)}</pre></div> */}
           {/* <iframe id='myIframe' src={prodIframe} title='prod'></iframe> */}
         </div>
         <div className='stg'>
-          <ReactJson displayDataTypes={false} displayObjectSize={false} enableClipboard={false} displayArrayKey={false} quotesOnKeys={false} groupArraysAfterLength={false} collapseStringsAfterLength={40} src={callStg} />
+          <ReactJson 
+            displayDataTypes={false} 
+            displayObjectSize={false} 
+            enableClipboard={false} 
+            displayArrayKey={false} 
+            quotesOnKeys={false} 
+            groupArraysAfterLength={false} 
+            collapseStringsAfterLength={40} 
+            src={callStg} />
           {/* <iframe src={stgIframe} title='stg'></iframe> */}
         </div>
       </div>
